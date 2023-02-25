@@ -16,6 +16,7 @@
 		B94F956F29AA428500A196E5 /* PortfolioTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F956E29AA428500A196E5 /* PortfolioTrackerTests.swift */; };
 		B94F957929AA428500A196E5 /* PortfolioTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F957829AA428500A196E5 /* PortfolioTrackerUITests.swift */; };
 		B94F957B29AA428500A196E5 /* PortfolioTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F957A29AA428500A196E5 /* PortfolioTrackerUITestsLaunchTests.swift */; };
+		B94F958929AA47EE00A196E5 /* LVFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = B94F958829AA47EE00A196E5 /* LVFoundation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B94F958929AA47EE00A196E5 /* LVFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +153,9 @@
 			dependencies = (
 			);
 			name = PortfolioTracker;
+			packageProductDependencies = (
+				B94F958829AA47EE00A196E5 /* LVFoundation */,
+			);
 			productName = PortfolioTracker;
 			productReference = B94F955429AA428300A196E5 /* PortfolioTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +228,9 @@
 				Base,
 			);
 			mainGroup = B94F954B29AA428300A196E5;
+			packageReferences = (
+				B94F958729AA47EE00A196E5 /* XCRemoteSwiftPackageReference "LVFoundation" */,
+			);
 			productRefGroup = B94F955529AA428300A196E5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -593,6 +601,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B94F958729AA47EE00A196E5 /* XCRemoteSwiftPackageReference "LVFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simeonlu/LVFoundation.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B94F958829AA47EE00A196E5 /* LVFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B94F958729AA47EE00A196E5 /* XCRemoteSwiftPackageReference "LVFoundation" */;
+			productName = LVFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B94F956229AA428500A196E5 /* PortfolioTracker.xcdatamodeld */ = {
