@@ -17,6 +17,12 @@
 		B94F957929AA428500A196E5 /* PortfolioTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F957829AA428500A196E5 /* PortfolioTrackerUITests.swift */; };
 		B94F957B29AA428500A196E5 /* PortfolioTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F957A29AA428500A196E5 /* PortfolioTrackerUITestsLaunchTests.swift */; };
 		B94F958929AA47EE00A196E5 /* LVFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = B94F958829AA47EE00A196E5 /* LVFoundation */; };
+		B94F959329B316EA00A196E5 /* Trading.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B94F959129B316EA00A196E5 /* Trading.xcdatamodeld */; };
+		B94F959429B316EA00A196E5 /* Trading.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B94F959129B316EA00A196E5 /* Trading.xcdatamodeld */; };
+		B94F95D929B425AF00A196E5 /* PositionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F95D729B425AF00A196E5 /* PositionEntity+CoreDataClass.swift */; };
+		B94F95DA29B425AF00A196E5 /* PositionEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F95D729B425AF00A196E5 /* PositionEntity+CoreDataClass.swift */; };
+		B94F95DB29B425AF00A196E5 /* PositionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F95D829B425AF00A196E5 /* PositionEntity+CoreDataProperties.swift */; };
+		B94F95DC29B425AF00A196E5 /* PositionEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F95D829B425AF00A196E5 /* PositionEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +56,9 @@
 		B94F957429AA428500A196E5 /* PortfolioTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PortfolioTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B94F957829AA428500A196E5 /* PortfolioTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTrackerUITests.swift; sourceTree = "<group>"; };
 		B94F957A29AA428500A196E5 /* PortfolioTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B94F959229B316EA00A196E5 /* Trading.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Trading.xcdatamodel; sourceTree = "<group>"; };
+		B94F95D729B425AF00A196E5 /* PositionEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PositionEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B94F95D829B425AF00A196E5 /* PositionEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PositionEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +110,7 @@
 		B94F955629AA428300A196E5 /* PortfolioTracker */ = {
 			isa = PBXGroup;
 			children = (
+				B94F958A29B315FA00A196E5 /* Data */,
 				B94F955729AA428300A196E5 /* PortfolioTrackerApp.swift */,
 				B94F955929AA428300A196E5 /* ContentView.swift */,
 				B94F955B29AA428500A196E5 /* Assets.xcassets */,
@@ -135,6 +145,32 @@
 				B94F957A29AA428500A196E5 /* PortfolioTrackerUITestsLaunchTests.swift */,
 			);
 			path = PortfolioTrackerUITests;
+			sourceTree = "<group>";
+		};
+		B94F958A29B315FA00A196E5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B94F958B29B3160600A196E5 /* DataTransaferLayer */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B94F958B29B3160600A196E5 /* DataTransaferLayer */ = {
+			isa = PBXGroup;
+			children = (
+				B94F958C29B3163400A196E5 /* CoreDataModel */,
+			);
+			path = DataTransaferLayer;
+			sourceTree = "<group>";
+		};
+		B94F958C29B3163400A196E5 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				B94F95D729B425AF00A196E5 /* PositionEntity+CoreDataClass.swift */,
+				B94F95D829B425AF00A196E5 /* PositionEntity+CoreDataProperties.swift */,
+				B94F959129B316EA00A196E5 /* Trading.xcdatamodeld */,
+			);
+			path = CoreDataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +312,10 @@
 				B94F956129AA428500A196E5 /* Persistence.swift in Sources */,
 				B94F955A29AA428300A196E5 /* ContentView.swift in Sources */,
 				B94F955829AA428300A196E5 /* PortfolioTrackerApp.swift in Sources */,
+				B94F95DB29B425AF00A196E5 /* PositionEntity+CoreDataProperties.swift in Sources */,
+				B94F959329B316EA00A196E5 /* Trading.xcdatamodeld in Sources */,
 				B94F956429AA428500A196E5 /* PortfolioTracker.xcdatamodeld in Sources */,
+				B94F95D929B425AF00A196E5 /* PositionEntity+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +324,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B94F956F29AA428500A196E5 /* PortfolioTrackerTests.swift in Sources */,
+				B94F959429B316EA00A196E5 /* Trading.xcdatamodeld in Sources */,
+				B94F95DA29B425AF00A196E5 /* PositionEntity+CoreDataClass.swift in Sources */,
+				B94F95DC29B425AF00A196E5 /* PositionEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +671,16 @@
 			);
 			currentVersion = B94F956329AA428500A196E5 /* PortfolioTracker.xcdatamodel */;
 			path = PortfolioTracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		B94F959129B316EA00A196E5 /* Trading.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B94F959229B316EA00A196E5 /* Trading.xcdatamodel */,
+			);
+			currentVersion = B94F959229B316EA00A196E5 /* Trading.xcdatamodel */;
+			path = Trading.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
