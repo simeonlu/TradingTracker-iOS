@@ -12,7 +12,7 @@
     </entity>
     <entity name="TradeEntity" representedClassName="TradeEntity" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="price" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="price" attributeType="Binary"/>
         <attribute name="quantity" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="ticker" attributeType="String"/>
         <attribute name="type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
