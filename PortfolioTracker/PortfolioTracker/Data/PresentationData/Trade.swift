@@ -12,5 +12,4 @@ struct Trade {
     let price: Decimal
     let quantity: UInt
     let ticker: String
-    
 }

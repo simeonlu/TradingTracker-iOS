@@ -2,7 +2,7 @@
 //  TradeEntity+CoreDataProperties.swift
 //  PortfolioTracker
 //
-//  Created by Shimin lyu on 26/3/2023.
+//  Created by Shimin lyu on 21/10/2023.
 //
 //
 

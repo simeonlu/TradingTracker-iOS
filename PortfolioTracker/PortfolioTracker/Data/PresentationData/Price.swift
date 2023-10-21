@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import LVFoundation
 
 struct Price {
     let amount: Decimal
-    let currency: Currency
+    let currency: CurrencyType
 }

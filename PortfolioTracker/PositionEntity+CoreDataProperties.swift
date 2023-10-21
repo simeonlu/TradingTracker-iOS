@@ -2,7 +2,7 @@
 //  PositionEntity+CoreDataProperties.swift
 //  PortfolioTracker
 //
-//  Created by Shimin lyu on 26/3/2023.
+//  Created by Shimin lyu on 21/10/2023.
 //
 //
 
@@ -16,11 +16,10 @@ extension PositionEntity {
         return NSFetchRequest<PositionEntity>(entityName: "PositionEntity")
     }
 
-    @NSManaged public var avgPrice: NSDecimalNumber?
     @NSManaged public var closedDate: Date?
     @NSManaged public var maxRisk: Float
-    @NSManaged public var startedDate: Date?
     @NSManaged public var quantity: Int16
+    @NSManaged public var startedDate: Date?
     @NSManaged public var stopLossPrice: NSDecimalNumber?
     @NSManaged public var ticker: String?
     @NSManaged public var trades: NSSet?
