@@ -2,13 +2,12 @@
 //  TradeEntity+CoreDataProperties.swift
 //  PortfolioTracker
 //
-//  Created by Shimin lyu on 21/10/2023.
+//  Created by Shimin lyu on 23/11/2023.
 //
 //
 
 import Foundation
 import CoreData
-
 
 extension TradeEntity {
 
@@ -25,6 +24,11 @@ extension TradeEntity {
 
 }
 
-extension TradeEntity : Identifiable {
+extension TradeEntity: Identifiable {
 
+}
+
+struct TradingType {
+    static let long: Int16 = 1
+    static let short: Int16 = 0
 }

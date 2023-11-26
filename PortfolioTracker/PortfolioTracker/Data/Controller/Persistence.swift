@@ -13,9 +13,13 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+        for num in 0..<10 {
+            let newItem = TradeEntity(context: viewContext)
+            newItem.date = Date()
+            newItem.ticker = "stock_\(num)"
+            newItem.price = 10.1
+            newItem.quantity = 100
+            newItem.type = TradingType.long
         }
         do {
             try viewContext.save()
@@ -30,10 +34,15 @@ struct PersistenceController {
 
     let container: NSPersistentCloudKitContainer
 
-    init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "StockPortfolioTracker")
+    init(inMemory: Bool = false, modelName: String = "Trading") {
+        guard let url = Bundle.main.url(forResource: modelName, withExtension: "momd"),
+              let model = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("Can't load \(modelName).momd from main Bundle")
+        }
+        
+        container = NSPersistentCloudKitContainer(name: modelName, managedObjectModel: model)
         if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
