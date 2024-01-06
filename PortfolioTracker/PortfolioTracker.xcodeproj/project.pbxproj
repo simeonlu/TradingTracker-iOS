@@ -26,6 +26,7 @@
 		B9CB329E29CFF6C400F823BB /* PositionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB329D29CFF6C400F823BB /* PositionRepo.swift */; };
 		B9CB32A129CFF83B00F823BB /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB32A029CFF83B00F823BB /* Trade.swift */; };
 		B9CB32A329CFFCFF00F823BB /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB32A229CFFCFF00F823BB /* Price.swift */; };
+		B9FD69122B49384600CE3E21 /* CoreDataRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD69112B49384600CE3E21 /* CoreDataRepo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		B9CB329D29CFF6C400F823BB /* PositionRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionRepo.swift; sourceTree = "<group>"; };
 		B9CB32A029CFF83B00F823BB /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		B9CB32A229CFFCFF00F823BB /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		B9FD69112B49384600CE3E21 /* CoreDataRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				B94F956029AA428500A196E5 /* Persistence.swift */,
+				B9FD69112B49384600CE3E21 /* CoreDataRepo.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			files = (
 				B94F956129AA428500A196E5 /* Persistence.swift in Sources */,
 				B9CB32A129CFF83B00F823BB /* Trade.swift in Sources */,
+				B9FD69122B49384600CE3E21 /* CoreDataRepo.swift in Sources */,
 				B94F955A29AA428300A196E5 /* ContentView.swift in Sources */,
 				B94F955829AA428300A196E5 /* PortfolioTrackerApp.swift in Sources */,
 				B94F959329B316EA00A196E5 /* Trading.xcdatamodeld in Sources */,

@@ -7,10 +7,9 @@
 
 import Foundation
 protocol TradingRepo {
-    //fetch data from data store
+    // fetch data from data store
     func listOfTrades(for ticker: String, from: Date, till to: Date) -> [Trade]
-    func listOfTrades(from: Date, till to: Date)
-    func storeTrades(_ trades: [Trade])
-    func removeTrade(_ trade: Trade)
-    func insertTrade(_ trade: Trade)
+    func listOfTrades(from: Date, till to: Date) -> [Trade]
+    func storeTrades(_ trades: [Trade]) -> Bool
+    func removeTrade(_ trade: Trade) -> Bool
 }
