@@ -2,12 +2,13 @@
 //  PositionEntity+CoreDataProperties.swift
 //  PortfolioTracker
 //
-//  Created by Shimin lyu on 23/11/2023.
+//  Created by Shimin lyu on 14/1/2024.
 //
 //
 
 import Foundation
 import CoreData
+
 
 extension PositionEntity {
 
@@ -21,6 +22,7 @@ extension PositionEntity {
     @NSManaged public var startedDate: Date?
     @NSManaged public var stopLossPrice: NSDecimalNumber?
     @NSManaged public var ticker: String?
+    @NSManaged public var category: String?
     @NSManaged public var trades: NSSet?
 
 }
@@ -42,6 +44,6 @@ extension PositionEntity {
 
 }
 
-extension PositionEntity: Identifiable {
+extension PositionEntity : Identifiable {
 
 }

@@ -2,7 +2,7 @@
 //  PositionEntity+CoreDataClass.swift
 //  PortfolioTracker
 //
-//  Created by Shimin lyu on 23/11/2023.
+//  Created by Shimin lyu on 14/1/2024.
 //
 //
 

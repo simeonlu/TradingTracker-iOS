@@ -10,7 +10,7 @@ import Foundation
 struct Trade {
     let tradedDate: Date
     let price: Decimal
-    let quantity: UInt32
+    let quantity: Int32
     let ticker: String
 }
 
