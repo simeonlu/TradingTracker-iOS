@@ -6,7 +6,6 @@
 //
 
 import Foundation
-struct TradingType {
-    static let long: Int16 = 1
-    static let short: Int16 = 0
+enum TradingType: Int16 {
+    case long, short
 }

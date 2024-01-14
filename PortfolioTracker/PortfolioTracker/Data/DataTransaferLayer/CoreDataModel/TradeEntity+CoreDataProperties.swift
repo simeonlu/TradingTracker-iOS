@@ -18,9 +18,9 @@ extension TradeEntity {
     @NSManaged public var date: Date?
     @NSManaged public var price: NSDecimalNumber?
     @NSManaged public var quantity: Int32
+    @NSManaged public var remarks: String?
     @NSManaged public var ticker: String?
     @NSManaged public var type: Int16
-    @NSManaged public var remarks: String?
     @NSManaged public var position: PositionEntity?
 
 }

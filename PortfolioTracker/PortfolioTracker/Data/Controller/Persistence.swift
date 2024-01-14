@@ -9,7 +9,9 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
+    static var sharedContext: NSManagedObjectContext {
+        shared.container.viewContext
+    }
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
@@ -19,7 +21,7 @@ struct PersistenceController {
             newItem.ticker = "stock_\(num)"
             newItem.price = 10.1
             newItem.quantity = 100
-            newItem.type = TradingType.long
+            newItem.type = TradingType.long.rawValue
         }
         do {
             try viewContext.save()
@@ -35,7 +37,10 @@ struct PersistenceController {
 
     let container: NSPersistentCloudKitContainer
 
-    init(inMemory: Bool = false, modelName: String = "Trading") {
+    init(inMemory: Bool = false,
+         modelName: String = "Trading",
+         storeReadinessCompletion: ((NSError?) -> Void)? = nil
+    ) {
         guard let url = Bundle.main.url(forResource: modelName, withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {
             fatalError("Can't load \(modelName).momd from main Bundle")
@@ -54,10 +59,12 @@ struct PersistenceController {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
+                storeReadinessCompletion?(error)
               #if DEBUG
                 fatalError("Unresolved error \(error), \(error.userInfo)")
               #endif
             }
+            storeReadinessCompletion?(nil)
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
