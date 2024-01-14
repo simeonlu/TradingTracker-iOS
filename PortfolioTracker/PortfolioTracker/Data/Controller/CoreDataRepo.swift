@@ -42,8 +42,11 @@ class CoreDataRepo: TradingRepo {
         false
     }
 
+    func updateTrades(_ trades: [Trade]) -> Bool {
+        false
+    }
     private func createRequest(predicate: NSPredicate, ascending: Bool) -> NSFetchRequest<TradeEntity> {
-        var request = TradeEntity.fetchRequest()
+        let request = TradeEntity.fetchRequest()
         request.sortDescriptors = [
             NSSortDescriptor(
                 keyPath: \TradeEntity.date,

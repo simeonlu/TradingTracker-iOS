@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension TradeEntity {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<TradeEntity> {
@@ -26,6 +25,5 @@ extension TradeEntity {
 
 }
 
-extension TradeEntity : Identifiable {
-
+extension TradeEntity: Identifiable {
 }

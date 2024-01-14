@@ -12,4 +12,5 @@ protocol TradingRepo {
     func listOfTrades(from: Date, till to: Date, ascending: Bool) -> [Trade]
     func storeTrades(_ trades: [Trade]) -> Bool
     func removeTrade(_ trade: Trade) -> Bool
+    func updateTrades(_ trades: [Trade]) -> Bool
 }

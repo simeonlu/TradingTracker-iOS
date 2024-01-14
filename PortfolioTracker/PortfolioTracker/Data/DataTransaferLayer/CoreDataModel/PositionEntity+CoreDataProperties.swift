@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension PositionEntity {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PositionEntity> {
@@ -44,6 +43,5 @@ extension PositionEntity {
 
 }
 
-extension PositionEntity : Identifiable {
-
+extension PositionEntity: Identifiable {
 }

@@ -19,7 +19,6 @@ final class PortfolioTrackerTests: XCTestCase {
     }
 
     func testExample() throws {
-      
     }
 
     func testPerformanceExample() throws {
