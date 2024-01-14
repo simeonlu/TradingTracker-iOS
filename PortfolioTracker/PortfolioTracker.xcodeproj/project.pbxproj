@@ -27,6 +27,7 @@
 		B9F496642B538B66003BC1B6 /* TradingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F496632B538B66003BC1B6 /* TradingType.swift */; };
 		B9F4966F2B53A08D003BC1B6 /* TradeEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F4966D2B53A08D003BC1B6 /* TradeEntity+CoreDataClass.swift */; };
 		B9F496702B53A08D003BC1B6 /* TradeEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F4966E2B53A08D003BC1B6 /* TradeEntity+CoreDataProperties.swift */; };
+		B9F496752B53E39F003BC1B6 /* TradeExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F496742B53E39F003BC1B6 /* TradeExtensionTest.swift */; };
 		B9FD69122B49384600CE3E21 /* TradingDataRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD69112B49384600CE3E21 /* TradingDataRepo.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		B9F496632B538B66003BC1B6 /* TradingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingType.swift; sourceTree = "<group>"; };
 		B9F4966D2B53A08D003BC1B6 /* TradeEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TradeEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B9F4966E2B53A08D003BC1B6 /* TradeEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TradeEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B9F496742B53E39F003BC1B6 /* TradeExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeExtensionTest.swift; sourceTree = "<group>"; };
 		B9FD69112B49384600CE3E21 /* TradingDataRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDataRepo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 		B94F956D29AA428500A196E5 /* PortfolioTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				B9F496712B53E18F003BC1B6 /* Data */,
 				B94F956E29AA428500A196E5 /* PortfolioTrackerTests.swift */,
 			);
 			path = PortfolioTrackerTests;
@@ -214,6 +217,30 @@
 				B9CB32A229CFFCFF00F823BB /* Price.swift */,
 			);
 			path = PresentationData;
+			sourceTree = "<group>";
+		};
+		B9F496712B53E18F003BC1B6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B9F496732B53E1B2003BC1B6 /* Repos */,
+				B9F496722B53E1A2003BC1B6 /* PresentationData */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B9F496722B53E1A2003BC1B6 /* PresentationData */ = {
+			isa = PBXGroup;
+			children = (
+				B9F496742B53E39F003BC1B6 /* TradeExtensionTest.swift */,
+			);
+			path = PresentationData;
+			sourceTree = "<group>";
+		};
+		B9F496732B53E1B2003BC1B6 /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B94F956F29AA428500A196E5 /* PortfolioTrackerTests.swift in Sources */,
+				B9F496752B53E39F003BC1B6 /* TradeExtensionTest.swift in Sources */,
 				B94F959429B316EA00A196E5 /* Trading.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
