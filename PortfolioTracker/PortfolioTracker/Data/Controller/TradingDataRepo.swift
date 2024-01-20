@@ -10,36 +10,44 @@ import LVFoundation
 import CoreData
 
 class TradingDataRepo: TradingRepo {
-    enum Status {
-        case uninit
-        case normal
-        case fatal(NSError)
-    }
-
-    private var status: Status
-    private let persistenceController: PersistenceController
+    
+    private var status: StoreStatus
     private var context: NSManagedObjectContext {
         persistenceController.container.viewContext
     }
-
-    init() {
-        persistenceController = PersistenceController.shared
-        self.status = .normal
+    let persistenceController: TradingPersistenceController
+    
+    init(inMemory: Bool = false) {
+        self.status = .unInit
+        persistenceController = TradingPersistenceController(inMemory: inMemory)
+        persistenceController.initPersistentStore { error in
+            if let error = error {
+                self.status = .fatal(error)
+            } else {
+                self.status = .normal
+            }
+        }
     }
-
-    func listOfTrades(for ticker: String, from: Date, till to: Date, ascending: Bool = false) -> [Trade] {
+    
+    func listOfTrades(for ticker: String, from: Date, till to: Date, ascending: Bool = false) throws -> [Trade] {
+        try healthCheck()
+        
         let predicate = NSPredicate(format: "ticker == %@ AND date > %@ AND date < %@ ", ticker, from as NSDate, to as NSDate)
         let request = createRequest(predicate: predicate, ascending: ascending)
         return fetchTradeResult(request: request)
     }
-
-    func listOfTrades(from: Date, till to: Date, ascending: Bool = false) -> [Trade] {
+    
+    func listOfTrades(from: Date, till to: Date, ascending: Bool = false) throws -> [Trade] {
+        try healthCheck()
+        
         let predicate = NSPredicate(format: "date > %@ AND date < %@ ", from as NSDate, to as NSDate)
         let request = createRequest(predicate: predicate, ascending: ascending)
         return fetchTradeResult(request: request)
     }
-
-    func storeTrades(_ trades: [Trade]) -> Bool {
+    
+    func storeTrades(_ trades: [Trade]) throws -> Bool {
+        try healthCheck()
+        
         do {
             try trades.forEach { trade in
                 _ = trade.mapToEntity(with: context)
@@ -53,17 +61,23 @@ class TradingDataRepo: TradingRepo {
         }
         return true
     }
-
-    func removeTrades(_ trades: [Trade]) {
-        trades
-            .compactMap { $0.id }
-            .forEach { id in
-                if let entity = try? context.existingObject(with: id) {
-                    context.delete(entity)
-                }
-            }
+    
+    func removeTrades(_ trades: [Trade]) throws {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TradeEntity")
+        fetchRequest.predicate = NSPredicate(
+            format: "self in %@",
+            trades.compactMap { $0.id }
+        )
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        try context.executeAndMergeChanges(using: batchDeleteRequest)
     }
-
+    
+    func removeTrade(_ trade: Trade) throws {
+        let entity = try context.existingObject(with: trade.id)
+        context.delete(entity)
+    }
+    
     private func createRequest(predicate: NSPredicate, ascending: Bool) -> NSFetchRequest<TradeEntity> {
         let request = TradeEntity.fetchRequest()
         request.sortDescriptors = [
@@ -75,7 +89,7 @@ class TradingDataRepo: TradingRepo {
         request.predicate = predicate
         return request
     }
-
+    
     private func fetchTradeResult(request: NSFetchRequest<TradeEntity>) -> [Trade] {
         do {
             return try context
@@ -83,6 +97,17 @@ class TradingDataRepo: TradingRepo {
                 .compactMap { $0.mapToTrade }
         } catch {
             return [] // TO DO print error when debug
+        }
+    }
+    
+    private func healthCheck() throws {
+        switch status {
+        case .unInit:
+            throw DBError.storeNotReady
+        case .normal:
+            return
+        case .fatal(let error):
+            throw DBError.storeError(error)
         }
     }
 }

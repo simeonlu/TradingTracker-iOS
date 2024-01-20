@@ -1,4 +1,5 @@
 disabled_rules: # 执行时排除掉的规则
+- trailing_whitespace
   
 opt_in_rules: # 一些规则是默认关闭的，所以你需要手动启用
 

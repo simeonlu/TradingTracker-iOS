@@ -15,7 +15,7 @@ struct Trade {
     let ticker: String
     let remarks: String
     let type: TradingType
-    let id: NSManagedObjectID?
+    let id: NSManagedObjectID
 }
 
 extension TradeEntity {

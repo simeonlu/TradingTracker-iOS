@@ -13,7 +13,9 @@ final class TradeExtensionTest: XCTestCase {
 
     var context: NSManagedObjectContext!
     override func setUpWithError() throws {
-        context = PersistenceController(inMemory: true).container.viewContext
+        let persistence = TradingPersistenceController(inMemory: true)
+        persistence.initPersistentStore()
+        context = persistence.container.viewContext
     }
 
     override func tearDownWithError() throws {
@@ -53,7 +55,7 @@ final class TradeExtensionTest: XCTestCase {
                           ticker: "TSLA",
                           remarks: "EV Uptrend",
                           type: .long,
-                          id: nil)
+                          id: NSManagedObjectID())
         // When
         let entity = trade.mapToEntity(with: context)
         // Then
@@ -63,7 +65,6 @@ final class TradeExtensionTest: XCTestCase {
         XCTAssertEqual(entity.date, now)
         XCTAssertEqual(entity.type, TradingType.long.rawValue)
         XCTAssertEqual(entity.remarks, "EV Uptrend")
-        XCTAssertNil(trade.id)
         XCTAssertTrue(entity.objectID.isTemporaryID)
     }
 
