@@ -10,6 +10,9 @@ import LVFoundation
 import CoreData
 
 class TradingDataRepo: TradingRepo {
+    func listOfExposingPosition(for ticker: String, from: Date, till to: Date, ascending: Bool) throws -> [Position] {
+       []
+    }
     
     private var status: StoreStatus
     private var context: NSManagedObjectContext {

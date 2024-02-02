@@ -18,10 +18,6 @@ final class TradeExtensionTest: XCTestCase {
         context = persistence.container.viewContext
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testEntityMapToTradeModel() throws {
         // GIVEN
         let now = Date()

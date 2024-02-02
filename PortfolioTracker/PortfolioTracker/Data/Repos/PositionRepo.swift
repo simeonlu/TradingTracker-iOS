@@ -13,7 +13,7 @@ protocol TradingRepo {
     ///   - from: from which date to search
     ///   - to: to which date to search
     ///   - ascending: if it is true then sort by Asc, Des otherwise
-    /// - Returns: array of trade that match those criterias
+    /// - Returns: array of trade that match those criteria
     func listOfTrades(for ticker: String, from: Date, till to: Date, ascending: Bool) throws -> [Trade]
     
     /// fetch trade data from DB
@@ -21,7 +21,7 @@ protocol TradingRepo {
     ///   - from: from which date to search
     ///   - to: to which date to search
     ///   - ascending: true then sort by Asc, Des otherwise
-    /// - Returns: array of trade items that match those criterias
+    /// - Returns: array of trade items that match those criteria
     func listOfTrades(from: Date, till to: Date, ascending: Bool) throws -> [Trade]
     
     /// Save trades
@@ -32,5 +32,7 @@ protocol TradingRepo {
     /// remove trades
     /// - Parameter trade: trades to be removed
     func removeTrades(_ trade: [Trade]) throws
+    
+    func listOfExposingPosition(for ticker: String, from: Date, till to: Date, ascending: Bool) throws -> [Position]
     
 }

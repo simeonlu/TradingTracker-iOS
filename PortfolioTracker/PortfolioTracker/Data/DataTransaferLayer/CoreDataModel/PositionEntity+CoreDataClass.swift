@@ -11,5 +11,4 @@ import CoreData
 
 @objc(PositionEntity)
 public class PositionEntity: NSManagedObject {
-
 }
