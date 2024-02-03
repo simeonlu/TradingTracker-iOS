@@ -26,6 +26,7 @@
 		B94F958929AA47EE00A196E5 /* LVFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = B94F958829AA47EE00A196E5 /* LVFoundation */; };
 		B94F959329B316EA00A196E5 /* Trading.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B94F959129B316EA00A196E5 /* Trading.xcdatamodeld */; };
 		B94F959429B316EA00A196E5 /* Trading.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B94F959129B316EA00A196E5 /* Trading.xcdatamodeld */; };
+		B9C8AA0A2B6DEAFD00E3A070 /* PositionDataRepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C8AA092B6DEAFD00E3A070 /* PositionDataRepoTests.swift */; };
 		B9CB329E29CFF6C400F823BB /* PositionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB329D29CFF6C400F823BB /* PositionRepo.swift */; };
 		B9CB32A129CFF83B00F823BB /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB32A029CFF83B00F823BB /* Trade.swift */; };
 		B9CB32A329CFFCFF00F823BB /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CB32A229CFFCFF00F823BB /* Price.swift */; };
@@ -77,6 +78,7 @@
 		B94F957829AA428500A196E5 /* PortfolioTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTrackerUITests.swift; sourceTree = "<group>"; };
 		B94F957A29AA428500A196E5 /* PortfolioTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B94F959229B316EA00A196E5 /* Trading.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Trading.xcdatamodel; sourceTree = "<group>"; };
+		B9C8AA092B6DEAFD00E3A070 /* PositionDataRepoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionDataRepoTests.swift; sourceTree = "<group>"; };
 		B9CB329D29CFF6C400F823BB /* PositionRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionRepo.swift; sourceTree = "<group>"; };
 		B9CB32A029CFF83B00F823BB /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		B9CB32A229CFFCFF00F823BB /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
@@ -203,7 +205,6 @@
 				B9F4966D2B53A08D003BC1B6 /* TradeEntity+CoreDataClass.swift */,
 				B9F4966E2B53A08D003BC1B6 /* TradeEntity+CoreDataProperties.swift */,
 				B94F959129B316EA00A196E5 /* Trading.xcdatamodeld */,
-				B9F496632B538B66003BC1B6 /* TradingType.swift */,
 			);
 			path = CoreDataModel;
 			sourceTree = "<group>";
@@ -234,6 +235,7 @@
 				B9CB32A029CFF83B00F823BB /* Trade.swift */,
 				B93976B32B6C80A100BEB983 /* Position.swift */,
 				B9CB32A229CFFCFF00F823BB /* Price.swift */,
+				B9F496632B538B66003BC1B6 /* TradingType.swift */,
 			);
 			path = PresentationData;
 			sourceTree = "<group>";
@@ -260,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				B93976A92B5BB1B900BEB983 /* TradingDataRepoTest.swift */,
+				B9C8AA092B6DEAFD00E3A070 /* PositionDataRepoTests.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9C8AA0A2B6DEAFD00E3A070 /* PositionDataRepoTests.swift in Sources */,
 				B94F956F29AA428500A196E5 /* PortfolioTrackerTests.swift in Sources */,
 				B93976AC2B5BB3BD00BEB983 /* TradingStoreCommonTest.swift in Sources */,
 				B93976BA2B6CA99700BEB983 /* PositionExtTests.swift in Sources */,

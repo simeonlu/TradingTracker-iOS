@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="PositionEntity" representedClassName="PositionEntity" syncable="YES">
-        <attribute name="category" attributeType="String"/>
+        <attribute name="assetType" attributeType="String"/>
         <attribute name="closedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="startedDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="ticker" attributeType="String"/>
         <attribute name="type" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>

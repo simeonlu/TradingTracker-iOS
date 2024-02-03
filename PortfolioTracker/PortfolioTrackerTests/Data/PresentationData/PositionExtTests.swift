@@ -22,8 +22,7 @@ final class PositionExtTests: XCTestCase {
         let now = Date()
         let entity = PositionEntity(context: context)
         entity.startedDate = now
-        entity.category = "stock"
-        entity.quantity = 100
+        entity.assetType = "stock"
         entity.ticker = "APPL"
         entity.type = 0
         entity.addToTrades(dummyTrade.mapToEntity(with: context))
@@ -34,7 +33,7 @@ final class PositionExtTests: XCTestCase {
         
         // Then
         XCTAssertEqual(position?.quantity, 100)
-        XCTAssertEqual(position?.category, PositionCategory.stock)
+        XCTAssertEqual(position?.asset, PositionAssetType.stock)
         XCTAssertEqual(position?.ticker, "APPL")
         XCTAssertEqual(position?.startedDate, now)
         XCTAssertEqual(position?.type, TradingType(rawValue: 0))
@@ -48,8 +47,7 @@ final class PositionExtTests: XCTestCase {
         let now = Date()
         let entity = PositionEntity(context: context)
         entity.startedDate = now
-        entity.category = "stock"
-        entity.quantity = 100
+        entity.assetType = "stock"
         entity.type = 0
         entity.addToTrades(dummyTrade.mapToEntity(with: context))
         // When
@@ -62,9 +60,8 @@ final class PositionExtTests: XCTestCase {
     func testEntityMapToPositionModel_nil_startDate() throws {
         // GIVEN
         let entity = PositionEntity(context: context)
-        entity.category = "stock"
+        entity.assetType = "stock"
         entity.startedDate = nil
-        entity.quantity = 100
         entity.type = 0
         entity.ticker = "APPL"
         entity.addToTrades(dummyTrade.mapToEntity(with: context))
@@ -79,7 +76,7 @@ final class PositionExtTests: XCTestCase {
     func testPositionModelMapToEntity() throws {
         // GIVEN
         let now = Date()
-        let position = Position(category: .cryptoCurrency,
+        let position = Position(asset: .cryptoCurrency,
                                 closedDate: nil,
                                 startedDate: now,
                                 type: .long,
@@ -91,7 +88,6 @@ final class PositionExtTests: XCTestCase {
         // When
         let entity = position.mapToEntity(with: context)
         // Then
-        XCTAssertEqual(entity.quantity, 100)
         XCTAssertNil(entity.closedDate)
         XCTAssertEqual(entity.ticker, "TSLA")
         XCTAssertEqual(entity.startedDate, now)

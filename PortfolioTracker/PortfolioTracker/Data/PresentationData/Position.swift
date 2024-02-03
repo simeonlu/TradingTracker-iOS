@@ -20,15 +20,15 @@ import CoreData
 
 struct Position {
     
-    /// refer to different market, like: Stock, future or currency
-    let category: PositionCategory
+    /// refer to different asset, like: Stock, future or currency
+    let asset: PositionAssetType
     /// The date when position is closed.
     let closedDate: Date?
     /// The date when position is opened.
     let startedDate: Date
     ///  Two type for trading now, long/short
     let type: TradingType
-    let quantity: Int16
+    let quantity: UInt32
     let ticker: String
     let trades: [Trade]
     let id: NSManagedObjectID
@@ -51,21 +51,24 @@ extension PositionEntity {
               tradeSet.isNotEmpty else {
             return nil
         }
-     
-        return Position(category: categoryPresenting,
+    
+        let quantity = tradeSet.reduce(0) { partialResult, item in
+            partialResult + item.quantity
+        }
+        return Position(asset: categoryPresenting,
                         closedDate: closedDate,
                         startedDate: date,
                         type: TradingType(rawValue: type) ?? .long,
-                        quantity: quantity,
+                        quantity: UInt32(quantity),
                         ticker: ticker,
                         trades: tradeSet,
                         id: objectID
         )
     }
     
-    var categoryPresenting: PositionCategory {
-        guard let categoryStored = category,
-              let categoryPresented = PositionCategory(rawValue: categoryStored) else {
+    var categoryPresenting: PositionAssetType {
+        guard let categoryStored = assetType,
+              let categoryPresented = PositionAssetType(rawValue: categoryStored) else {
             return .unknown
         }
         return categoryPresented
@@ -87,8 +90,7 @@ extension Position {
         }
         entity.startedDate = startedDate
         entity.closedDate = closedDate
-        entity.category = category.rawValue
-        entity.quantity = quantity
+        entity.assetType = asset.rawValue
         entity.ticker = ticker
         entity.type = type.rawValue
         entity.trades = NSSet(array: tradeEntities)

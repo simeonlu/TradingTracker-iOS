@@ -10,6 +10,6 @@ enum TradingType: Int16 {
     case long, short
 }
 
-enum PositionCategory: String {
+enum PositionAssetType: String {
     case stock, stockOption, currency, future, cryptoCurrency, unknown
 }

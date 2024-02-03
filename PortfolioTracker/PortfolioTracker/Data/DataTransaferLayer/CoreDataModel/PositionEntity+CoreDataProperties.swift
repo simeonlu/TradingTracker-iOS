@@ -15,9 +15,8 @@ extension PositionEntity {
         return NSFetchRequest<PositionEntity>(entityName: "PositionEntity")
     }
 
-    @NSManaged public var category: String?
+    @NSManaged public var assetType: String?
     @NSManaged public var closedDate: Date?
-    @NSManaged public var quantity: Int16
     @NSManaged public var startedDate: Date?
     @NSManaged public var ticker: String?
     @NSManaged public var type: Int16

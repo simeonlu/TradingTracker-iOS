@@ -20,10 +20,10 @@ final class TradingDataRepoTest: TradingStoreCommonTest {
     
     func testRepoList() throws {
         // Given
-        populateDummyData()
+        populateDummyTradesData()
         
         // When
-        let trades = try repo.listOfTrades(from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
+        let trades = try repo.tradeList(from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
         let trade1 = trades.first!
         // Then
         XCTAssertEqual(trades.count, 3)
@@ -32,10 +32,10 @@ final class TradingDataRepoTest: TradingStoreCommonTest {
     
     func testRepoLookUp() throws {
         // Given
-        populateDummyData()
+        populateDummyTradesData()
         
         // When
-        let trades = try repo.listOfTrades(for: "AMD", from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
+        let trades = try repo.trades(of: "AMD", from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
         let trade1 = trades.first
         
         // Then
@@ -52,12 +52,12 @@ final class TradingDataRepoTest: TradingStoreCommonTest {
     
     func testRepoStore() throws {
         // Given
-        populateDummyData()
+        populateDummyTradesData()
         let dummyTrade = generateSingleTradeObject()
         
         // When
         let isStored = try repo.storeTrades([dummyTrade])
-        let trades = try repo.listOfTrades(for: "Meta", from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
+        let trades = try repo.trades(of: "Meta", from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
         let trade = trades.first!
         // Then
         XCTAssertTrue(isStored)
@@ -71,7 +71,7 @@ final class TradingDataRepoTest: TradingStoreCommonTest {
         
         // When
         try repo.removeTrades([trade])
-        let trades2 = try repo.listOfTrades(for: "Meta", from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
+        let trades2 = try repo.trades(of: "Meta", from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
         
         // Then
         XCTAssertTrue(trades2.isEmpty)

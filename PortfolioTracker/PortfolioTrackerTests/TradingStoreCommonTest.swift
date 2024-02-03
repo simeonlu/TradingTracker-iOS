@@ -27,7 +27,7 @@ class TradingStoreCommonTest: XCTestCase {
 }
 
 extension TradingStoreCommonTest {
-    func populateDummyData() {
+    func populateDummyTradesData() {
         let now = Date()
         let entity = TradeEntity(context: context)
         entity.date = now
@@ -80,5 +80,47 @@ extension TradingStoreCommonTest {
                      type: .long,
                      id: NSManagedObjectID())
         
+    }
+    
+    func populateDummyPositionData() {
+        let now = Date()
+        let entity = PositionEntity(context: context)
+        entity.startedDate = now
+        entity.assetType = "stock"
+        entity.ticker = dummyTrade.ticker
+        entity.type = 0
+        entity.addToTrades(dummyTrade.mapToEntity(with: context))
+        
+        let date1 = Date(timeInterval: -24 * 60 * 60, since: Date())
+        let trade1 = TradeEntity(context: context)
+        trade1.date = date1
+        trade1.price = NSDecimalNumber(110.023)
+        trade1.quantity = 1000
+        trade1.ticker = "TSLA"
+        trade1.type = 0
+        trade1.remarks = "Test Stock1"
+        let entity2 = PositionEntity(context: context)
+        entity2.startedDate = date1
+        entity2.assetType = "stock"
+        entity2.ticker = trade1.ticker
+        entity2.type = trade1.type
+        entity2.addToTrades(trade1)
+        
+        let date2 = Date(timeInterval: -2 * 24 * 60 * 60, since: Date())
+        let trade2 = TradeEntity(context: context)
+        trade2.date = date2
+        trade2.price = NSDecimalNumber(340.89)
+        trade2.quantity = 500
+        trade2.ticker = "AMD"
+        trade2.type = 1
+        trade2.remarks = "Test Stock2"
+        let entity3 = PositionEntity(context: context)
+        entity3.startedDate = date2
+        entity3.assetType = "stock"
+        entity3.ticker = trade2.ticker
+        entity3.type = trade2.type
+        entity3.addToTrades(trade2)
+        
+        try? context.save()
     }
 }
