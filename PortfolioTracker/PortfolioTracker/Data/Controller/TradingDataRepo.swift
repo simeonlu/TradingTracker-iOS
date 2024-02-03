@@ -51,9 +51,21 @@ class TradingDataRepo: TradingRepo {
         
         do {
             try trades.forEach { trade in
-                _ = trade.mapToEntity(with: context)
-                try context.save()
+                let tradeEntity = trade.mapToEntity(with: context)
+                if let posEntity = try getOpeningPositionEntity(of: trade) {
+                    posEntity.addToTrades(tradeEntity)
+                } else {
+                    let entity = PositionEntity(context: context)
+                    entity.startedDate = trade.tradedDate
+                    entity.type = trade.type.rawValue
+                    entity.ticker = trade.ticker
+                    entity.trades = NSSet(object: tradeEntity)
+                    entity.assetType = PositionAssetType.stock.rawValue
+                }
             }
+            
+            try context.save()
+            
         } catch {
 #if DEBUG
             print("unexpected error when save object in core data: \(error)")
@@ -79,8 +91,8 @@ class TradingDataRepo: TradingRepo {
         context.delete(entity)
     }
     
-   // MARK: - Position functions
-    func positions(of ticker: String, 
+    // MARK: - Position functions
+    func positions(of ticker: String,
                    dateRange: Range<Date>,
                    ascending: Bool) throws -> [Position] {
         try healthCheck()
@@ -107,6 +119,7 @@ class TradingDataRepo: TradingRepo {
             try positions.forEach { item in
                 _ = item.mapToEntity(with: context)
                 try context.save()
+                
             }
         } catch {
 #if DEBUG
@@ -129,60 +142,74 @@ class TradingDataRepo: TradingRepo {
     }
     
 }
+// MARK: - Helper functions
 extension TradingDataRepo {
-    
-    private func createPositionRequest(predicate: NSPredicate, ascending: Bool) -> NSFetchRequest<PositionEntity> {
-        let request = PositionEntity.fetchRequest()
-        request.sortDescriptors = [
-            NSSortDescriptor(
-                keyPath: \PositionEntity.startedDate,
-                ascending: ascending)
-        ]
-        request.fetchLimit = 100
-        request.predicate = predicate
-        return request
-    }
-    
-    private func fetchPositionResult(request: NSFetchRequest<PositionEntity>) -> [Position] {
-        do {
-            return try context
-                .fetch(request)
-                .compactMap { $0.mapToPosition }
-        } catch {
-            return [] // TO DO print error when debug
+    private func getOpeningPositionEntity(of trade: Trade) throws -> PositionEntity? {
+        let predicate = NSPredicate(format: "ticker == %@ AND closedDate != nil", trade.ticker)
+        let request = createPositionRequest(predicate: predicate, ascending: false)
+        let positions = fetchPositionEntity(request: request)
+        guard positions.count < 2 else {
+            throw DataError.multipleOpeningPositionForOneAsset
         }
+        return positions.first
+}
+
+private func createPositionRequest(predicate: NSPredicate, ascending: Bool) -> NSFetchRequest<PositionEntity> {
+    let request = PositionEntity.fetchRequest()
+    request.sortDescriptors = [
+        NSSortDescriptor(
+            keyPath: \PositionEntity.startedDate,
+            ascending: ascending)
+    ]
+    request.fetchLimit = 100
+    request.predicate = predicate
+    return request
+}
+
+private func fetchPositionEntity(request: NSFetchRequest<PositionEntity>) -> [PositionEntity] {
+    do {
+        return try context.fetch(request)
+    } catch {
+        return [] // TO DO print error when debug
     }
-    
-    private func createTradeRequest(predicate: NSPredicate, ascending: Bool) -> NSFetchRequest<TradeEntity> {
-        let request = TradeEntity.fetchRequest()
-        request.sortDescriptors = [
-            NSSortDescriptor(
-                keyPath: \TradeEntity.date,
-                ascending: ascending)
-        ]
-        request.fetchLimit = 100
-        request.predicate = predicate
-        return request
+}
+
+private func fetchPositionResult(request: NSFetchRequest<PositionEntity>) -> [Position] {
+    fetchPositionEntity(request: request).compactMap { $0.mapToPosition }
+}
+
+private func createTradeRequest(predicate: NSPredicate, ascending: Bool) -> NSFetchRequest<TradeEntity> {
+    let request = TradeEntity.fetchRequest()
+    request.sortDescriptors = [
+        NSSortDescriptor(
+            keyPath: \TradeEntity.date,
+            ascending: ascending)
+    ]
+    request.fetchLimit = 100
+    request.predicate = predicate
+    return request
+}
+
+private func fetchTradeEntity(request: NSFetchRequest<TradeEntity>) -> [TradeEntity] {
+    do {
+        return try context.fetch(request)
+    } catch {
+        return [] // TO DO print error when debug
     }
-    
-    private func fetchTradeResult(request: NSFetchRequest<TradeEntity>) -> [Trade] {
-        do {
-            return try context
-                .fetch(request)
-                .compactMap { $0.mapToTrade }
-        } catch {
-            return [] // TO DO print error when debug
-        }
+}
+
+private func fetchTradeResult(request: NSFetchRequest<TradeEntity>) -> [Trade] {
+    fetchTradeEntity(request: request).compactMap { $0.mapToTrade }
+}
+
+private func healthCheck() throws {
+    switch status {
+    case .unInit:
+        throw DBError.storeNotReady
+    case .normal:
+        return
+    case .fatal(let error):
+        throw DBError.storeError(error)
     }
-    
-    private func healthCheck() throws {
-        switch status {
-        case .unInit:
-            throw DBError.storeNotReady
-        case .normal:
-            return
-        case .fatal(let error):
-            throw DBError.storeError(error)
-        }
-    }
+}
 }

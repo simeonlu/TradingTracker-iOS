@@ -72,8 +72,12 @@ final class TradingDataRepoTest: TradingStoreCommonTest {
         // When
         try repo.removeTrades([trade])
         let trades2 = try repo.trades(of: "Meta", from: Date(timeInterval: -4 * 24 * 60 * 60, since: Date()), till: Date())
-        
+        let positions = try repo.positions(of: "Meta",
+                                           dateRange: Date(timeInterval: -4 * 24 * 60 * 60, since: Date())..<Date(),
+                                           ascending: true)
+                        
         // Then
         XCTAssertTrue(trades2.isEmpty)
+        XCTAssertTrue(positions.isEmpty)
     }
 }

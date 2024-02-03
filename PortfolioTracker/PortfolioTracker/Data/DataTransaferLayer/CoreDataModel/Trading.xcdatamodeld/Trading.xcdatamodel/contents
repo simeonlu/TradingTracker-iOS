@@ -6,7 +6,7 @@
         <attribute name="startedDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="ticker" attributeType="String"/>
         <attribute name="type" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="trades" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="TradeEntity" inverseName="position" inverseEntity="TradeEntity"/>
+        <relationship name="trades" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="TradeEntity" inverseName="position" inverseEntity="TradeEntity"/>
     </entity>
     <entity name="TradeEntity" representedClassName="TradeEntity" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>

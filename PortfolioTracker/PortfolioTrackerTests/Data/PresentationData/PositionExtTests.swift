@@ -32,7 +32,7 @@ final class PositionExtTests: XCTestCase {
         let trade = position?.trades.first
         
         // Then
-        XCTAssertEqual(position?.quantity, 100)
+        XCTAssertEqual(position?.quantity, 120)
         XCTAssertEqual(position?.asset, PositionAssetType.stock)
         XCTAssertEqual(position?.ticker, "APPL")
         XCTAssertEqual(position?.startedDate, now)

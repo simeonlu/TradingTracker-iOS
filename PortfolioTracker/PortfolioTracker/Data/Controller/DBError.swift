@@ -11,3 +11,7 @@ enum DBError: Error {
     case storeNotReady
     case storeError(NSError)
 }
+
+enum DataError: Error {
+    case multipleOpeningPositionForOneAsset
+}
